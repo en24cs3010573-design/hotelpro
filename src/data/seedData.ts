@@ -1,7 +1,3 @@
-import heroExterior from '../assets/images/hotel_hero_exterior_1793036063281.jpg';
-import roomPresSuite from '../assets/images/room_presidential_suite_1793036079615.jpg';
-import roomDeluxeOcean from '../assets/images/room_deluxe_ocean_1793036093151.jpg';
-import roomExecSuite from '../assets/images/room_executive_suite_1793036109696.jpg';
 import {
   Booking,
   HotelConfig,
@@ -103,11 +99,11 @@ export const INITIAL_ROOMS: Room[] = [
       bookingId: 'HP-89401',
       checkOutDate: '2026-10-28',
     },
-    imageUrl: roomPresSuite,
+    imageUrl: '/images/room_presidential_suite_1793036079615.jpg',
     gallery: [
-      roomPresSuite,
-      roomDeluxeOcean,
-      heroExterior,
+      '/images/room_presidential_suite_1793036079615.jpg',
+      '/images/room_deluxe_ocean_1793036093151.jpg',
+      '/images/hotel_hero_exterior_1793036063281.jpg',
     ],
     description:
       'Perched on the top floor with sweeping 270-degree ocean views, the Presidential Suite features a private terrace, dining salon for eight, soaking bathtub, and bespoke handcrafted furnishings.',
@@ -135,10 +131,10 @@ export const INITIAL_ROOMS: Room[] = [
       'Artisan Robes & Slippers',
     ],
     status: 'available',
-    imageUrl: roomDeluxeOcean,
+    imageUrl: '/images/room_deluxe_ocean_1793036093151.jpg',
     gallery: [
-      roomDeluxeOcean,
-      heroExterior,
+      '/images/room_deluxe_ocean_1793036093151.jpg',
+      '/images/hotel_hero_exterior_1793036063281.jpg',
     ],
     description:
       'Flooded with natural Mediterranean light, this spacious sanctuary looks out across turquoise waters with a private breakfast balcony and custom oak work station.',
@@ -165,10 +161,10 @@ export const INITIAL_ROOMS: Room[] = [
       'Premium Tea & Espresso Bar',
     ],
     status: 'dirty',
-    imageUrl: roomExecSuite,
+    imageUrl: '/images/room_executive_suite_1793036109696.jpg',
     gallery: [
-      roomExecSuite,
-      roomDeluxeOcean,
+      '/images/room_executive_suite_1793036109696.jpg',
+      '/images/room_deluxe_ocean_1793036093151.jpg',
     ],
     description:
       'Designed for executive travelers or traveling companions, featuring twin premium queen beds, dedicated acoustic soundproofing, and a refined seating salon.',
@@ -194,8 +190,8 @@ export const INITIAL_ROOMS: Room[] = [
       'Organic Bath Products',
     ],
     status: 'cleaning',
-    imageUrl: roomDeluxeOcean,
-    gallery: [roomDeluxeOcean],
+    imageUrl: '/images/room_deluxe_ocean_1793036093151.jpg',
+    gallery: ['/images/room_deluxe_ocean_1793036093151.jpg'],
     description:
       'Peaceful coastal retreat situated amidst coastal palms with floor-to-ceiling glass sliding doors opening to ocean breezes.',
     rating: 4.85,
@@ -220,8 +216,8 @@ export const INITIAL_ROOMS: Room[] = [
       'Mini Fridge & Safe',
     ],
     status: 'inspected',
-    imageUrl: roomExecSuite,
-    gallery: [roomExecSuite],
+    imageUrl: '/images/room_executive_suite_1793036109696.jpg',
+    gallery: ['/images/room_executive_suite_1793036109696.jpg'],
     description:
       'Quiet first-floor garden access room with twin beds, ideal for families and small groups seeking direct promenade access.',
     rating: 4.79,
@@ -246,8 +242,8 @@ export const INITIAL_ROOMS: Room[] = [
       'Bespoke Concierge',
     ],
     status: 'maintenance',
-    imageUrl: roomPresSuite,
-    gallery: [roomPresSuite],
+    imageUrl: '/images/room_presidential_suite_1793036079615.jpg',
+    gallery: ['/images/room_presidential_suite_1793036079615.jpg'],
     description:
       'Luxurious penthouse suite with private jacuzzi on the wrap-around veranda and panoramic dusk views.',
     rating: 4.94,
@@ -272,8 +268,8 @@ export const INITIAL_ROOMS: Room[] = [
       'Smart TV & Streaming',
     ],
     status: 'available',
-    imageUrl: roomDeluxeOcean,
-    gallery: [roomDeluxeOcean],
+    imageUrl: '/images/room_deluxe_ocean_1793036093151.jpg',
+    gallery: ['/images/room_deluxe_ocean_1793036093151.jpg'],
     description:
       'Comfortable superior king room looking onto fragrant jasmine gardens, offering an oasis of calm and supreme rest.',
     rating: 4.75,
@@ -298,8 +294,8 @@ export const INITIAL_ROOMS: Room[] = [
       'Fast WiFi',
     ],
     status: 'available',
-    imageUrl: roomDeluxeOcean,
-    gallery: [roomDeluxeOcean],
+    imageUrl: '/images/room_deluxe_ocean_1793036093151.jpg',
+    gallery: ['/images/room_deluxe_ocean_1793036093151.jpg'],
     description:
       'An intimate sanctuary featuring minimalist contemporary craftsmanship and morning sun on the balcony.',
     rating: 4.78,

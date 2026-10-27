@@ -1,6 +1,0 @@
-{
-  "name": "HotelPro - Complete hotel booking and management solution",
-  "description": "Your ultimate hotel management solution! Streamlining operations with real-time room availability, guest check-in/out, multi-role access control, secure payments, and operational analytics.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
