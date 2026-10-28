@@ -2,18 +2,8 @@ import React, { useState } from 'react';
 import {
   Bell,
   Check,
-  CheckCircle2,
   ChevronDown,
-  Compass,
-  FileCheck2,
-  KeyRound,
-  Layers,
-  LogOut,
   RotateCcw,
-  Shield,
-  Sparkles,
-  UserCheck,
-  Users,
 } from 'lucide-react';
 import { useHotel } from '../context/HotelContext';
 import { UserRole } from '../types/hotel';
@@ -21,13 +11,11 @@ import { UserRole } from '../types/hotel';
 interface NavbarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  onOpenSkillWalletModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   setActiveTab,
-  onOpenSkillWalletModal,
 }) => {
   const {
     currentUser,
@@ -106,15 +94,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Zone 3: Actions, Role Persona & Notifications */}
           <div className="flex items-center gap-2.5 shrink-0">
-            {/* SkillWallet Project Proof & Spec Drawer Button */}
-            <button
-              onClick={onOpenSkillWalletModal}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-md border border-neutral-200 transition whitespace-nowrap"
-              title="View SkillWallet submission rubric & test checklist"
-            >
-              <FileCheck2 className="w-3.5 h-3.5 text-amber-600" />
-              <span>Project Rubric</span>
-            </button>
 
             {/* Notification Bell */}
             <div className="relative">
@@ -152,129 +131,4 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <div
                           key={n.id}
                           onClick={() => markNotificationRead(n.id)}
-                          className={`p-3 text-left hover:bg-neutral-50 cursor-pointer transition ${
-                            !n.read ? 'bg-amber-50/40' : ''
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-1 mb-1">
-                            <span className="text-xs font-semibold text-neutral-900 truncate">
-                              {n.title}
-                            </span>
-                            <span className="text-[10px] text-neutral-400 shrink-0">
-                              {n.timestamp}
-                            </span>
-                          </div>
-                          <p className="text-xs text-neutral-600 leading-snug">{n.message}</p>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Role Switcher Persona Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setShowRoleMenu(!showRoleMenu)}
-                className="flex items-center gap-2 p-1.5 pl-2.5 rounded-lg border border-neutral-200 hover:border-neutral-300 bg-white transition shadow-xs text-left"
-              >
-                <div className="w-6 h-6 rounded-full bg-neutral-900 text-white flex items-center justify-center text-xs font-bold shrink-0">
-                  {currentUser.name.charAt(0)}
-                </div>
-                <div className="hidden sm:block text-left">
-                  <div className="text-xs font-semibold text-neutral-900 leading-none">
-                    {currentUser.name}
-                  </div>
-                  <div className="text-[10px] text-neutral-500 font-medium capitalize mt-0.5">
-                    {currentUser.role}
-                  </div>
-                </div>
-                <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />
-              </button>
-
-              {showRoleMenu && (
-                <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-neutral-200 py-2 z-50">
-                  <div className="px-3 py-1.5 border-b border-neutral-100">
-                    <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block">
-                      Switch Active Role
-                    </span>
-                  </div>
-                  <div className="p-1 space-y-0.5">
-                    {(['guest', 'staff', 'manager', 'admin'] as UserRole[]).map((r) => {
-                      const isCurrent = currentUser.role === r;
-                      const info = roleLabels[r];
-                      return (
-                        <button
-                          key={r}
-                          onClick={() => {
-                            setCurrentUserRole(r);
-                            setShowRoleMenu(false);
-                            // Auto navigate to role view for convenience
-                            if (r === 'guest') setActiveTab('explore');
-                            if (r === 'staff') setActiveTab('frontdesk');
-                            if (r === 'manager') setActiveTab('operations');
-                            if (r === 'admin') setActiveTab('analytics');
-                          }}
-                          className={`w-full text-left px-3 py-2 text-xs rounded-lg flex items-center justify-between transition ${
-                            isCurrent
-                              ? 'bg-neutral-900 text-white font-medium'
-                              : 'text-neutral-700 hover:bg-neutral-100'
-                          }`}
-                        >
-                          <div>
-                            <div className="font-semibold">{info.title}</div>
-                            <div
-                              className={`text-[10px] ${
-                                isCurrent ? 'text-neutral-300' : 'text-neutral-400'
-                              }`}
-                            >
-                              Role: {info.badge}
-                            </div>
-                          </div>
-                          {isCurrent && <Check className="w-4 h-4 shrink-0" />}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <div className="pt-1.5 mt-1.5 border-t border-neutral-100 px-1">
-                    <button
-                      onClick={() => {
-                        resetToInitialDemo();
-                        setShowRoleMenu(false);
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-xs text-neutral-600 hover:text-red-700 hover:bg-red-50 rounded-lg flex items-center gap-2 transition"
-                    >
-                      <RotateCcw className="w-3.5 h-3.5" />
-                      <span>Reset Demo Data</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-          </div>
-        </div>
-
-        {/* Mobile Nav Bar */}
-        <div className="lg:hidden flex items-center justify-between py-2 border-t border-neutral-100 overflow-x-auto gap-2">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`px-2.5 py-1 text-xs font-semibold rounded-md whitespace-nowrap ${
-                activeTab === item.id
-                  ? 'bg-neutral-900 text-white'
-                  : 'text-neutral-600 hover:bg-neutral-100'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-
-      </div>
-    </header>
-  );
-};
+                          className={`p-3 text-left hover:bg-neutral-

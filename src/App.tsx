@@ -14,9 +14,8 @@ import { AdminAnalyticsView } from './components/views/AdminAnalyticsView';
 import { BookingModal } from './components/BookingModal';
 import { RoomDetailsModal } from './components/RoomDetailsModal';
 import { InvoiceModal } from './components/InvoiceModal';
-import { SkillWalletSubmissionModal } from './components/SkillWalletSubmissionModal';
-import { Booking, Room } from './types/hotel';
-import { CheckCircle2, ShieldCheck, Sparkles, Building, Phone, Mail } from 'lucide-react';
+import { Room } from './types/hotel';
+import { CheckCircle2 } from 'lucide-react';
 
 function HotelAppContent() {
   const { config, rooms, selectedBookingForInvoice, setSelectedBookingForInvoice, currentUser } = useHotel();
@@ -24,7 +23,6 @@ function HotelAppContent() {
   const [activeTab, setActiveTab] = useState('explore');
   const [selectedRoomDetails, setSelectedRoomDetails] = useState<Room | null>(null);
   const [selectedRoomBooking, setSelectedRoomBooking] = useState<Room | null>(null);
-  const [showSkillWallet, setShowSkillWallet] = useState(false);
   const [bookingToast, setBookingToast] = useState<{ show: boolean; code: string }>({
     show: false,
     code: '',
@@ -55,7 +53,6 @@ function HotelAppContent() {
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        onOpenSkillWalletModal={() => setShowSkillWallet(true)}
       />
 
       {/* Booking Toast Alert */}
@@ -92,85 +89,4 @@ function HotelAppContent() {
 
         {activeTab === 'reservations' && (
           <GuestReservationsView
-            onOpenInvoice={(booking) => setSelectedBookingForInvoice(booking)}
-          />
-        )}
-
-        {activeTab === 'frontdesk' && (
-          <FrontDeskView
-            onOpenInvoice={(booking) => setSelectedBookingForInvoice(booking)}
-            onOpenWalkInModal={handleOpenWalkIn}
-          />
-        )}
-
-        {activeTab === 'operations' && <OperationsHousekeepingView />}
-
-        {activeTab === 'analytics' && <AdminAnalyticsView />}
-      </main>
-
-      {/* Modals & Overlays */}
-      <RoomDetailsModal
-        room={selectedRoomDetails}
-        onClose={() => setSelectedRoomDetails(null)}
-        onBookNow={(room) => {
-          setSelectedRoomDetails(null);
-          setSelectedRoomBooking(room);
-        }}
-      />
-
-      <BookingModal
-        room={selectedRoomBooking}
-        onClose={() => setSelectedRoomBooking(null)}
-        onBookingSuccess={handleBookingSuccess}
-      />
-
-      <InvoiceModal
-        booking={selectedBookingForInvoice}
-        onClose={() => setSelectedBookingForInvoice(null)}
-      />
-
-      {showSkillWallet && (
-        <SkillWalletSubmissionModal
-          onClose={() => setShowSkillWallet(false)}
-          onNavigateToTab={(tab) => {
-            setActiveTab(tab);
-            setShowSkillWallet(false);
-          }}
-        />
-      )}
-
-      {/* Quiet, Professional Hospitality Footer */}
-      <footer className="bg-white border-t border-neutral-200 py-8 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-neutral-500">
-            <div>
-              <span className="font-bold text-neutral-900">{config.hotelName}</span>
-              <p className="mt-0.5">{config.address}</p>
-            </div>
-            <div className="flex flex-wrap items-center gap-4">
-              <button
-                onClick={() => setShowSkillWallet(true)}
-                className="hover:text-neutral-900 transition underline underline-offset-4"
-              >
-                Project Evaluation Rubric
-              </button>
-              <span aria-hidden="true">·</span>
-              <span>HotelPro PMS v2.4</span>
-              <span aria-hidden="true">·</span>
-              <span>Active Persona: <strong className="text-neutral-800 capitalize">{currentUser.name} ({currentUser.role})</strong></span>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-    </div>
-  );
-}
-
-export default function App() {
-  return (
-    <HotelProvider>
-      <HotelAppContent />
-    </HotelProvider>
-  );
-}
+            onOpenInvoice={(booking)
