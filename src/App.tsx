@@ -89,4 +89,68 @@ function HotelAppContent() {
 
         {activeTab === 'reservations' && (
           <GuestReservationsView
-            onOpenInvoice={(booking)
+            onOpenInvoice={(b) => setSelectedBookingForInvoice(b)}
+          />
+        )}
+
+        {activeTab === 'frontdesk' && (
+          <FrontDeskView
+            onOpenInvoice={(b) => setSelectedBookingForInvoice(b)}
+            onOpenWalkInModal={handleOpenWalkIn}
+          />
+        )}
+
+        {activeTab === 'operations' && <OperationsHousekeepingView />}
+
+        {activeTab === 'analytics' && <AdminAnalyticsView />}
+      </main>
+
+      {/* Modals & Overlays */}
+      <RoomDetailsModal
+        room={selectedRoomDetails}
+        onClose={() => setSelectedRoomDetails(null)}
+        onBookNow={(room) => {
+          setSelectedRoomDetails(null);
+          setSelectedRoomBooking(room);
+        }}
+      />
+
+      <BookingModal
+        room={selectedRoomBooking}
+        onClose={() => setSelectedRoomBooking(null)}
+        onBookingSuccess={handleBookingSuccess}
+      />
+
+      <InvoiceModal
+        booking={selectedBookingForInvoice}
+        onClose={() => setSelectedBookingForInvoice(null)}
+      />
+
+      {/* Quiet, Professional Hospitality Footer */}
+      <footer className="bg-white border-t border-neutral-200 py-8 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-neutral-500">
+            <div>
+              <span className="font-bold text-neutral-900">{config.hotelName}</span>
+              <p className="mt-0.5">{config.address}</p>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <span>HotelPro PMS v2.4</span>
+              <span aria-hidden="true">·</span>
+              <span>Active Persona: <strong className="text-neutral-800 capitalize">{currentUser.name} ({currentUser.role})</strong></span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <HotelProvider>
+      <HotelAppContent />
+    </HotelProvider>
+  );
+}
