@@ -52,7 +52,7 @@ export const GuestBrowseView: React.FC<GuestBrowseViewProps> = ({
       <section className="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200">
         <div className="relative h-[440px] sm:h-[500px] w-full">
           <img
-            src="/src/assets/images/hotel_hero_exterior_1793036063281.jpg"
+            src="/images/hotel_hero_exterior_1793036063281.jpg"
             alt={config.hotelName}
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
